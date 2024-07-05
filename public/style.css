@@ -1,0 +1,120 @@
+/* Container Styles */
+.aadhar-container {
+    margin: 10rem auto;
+    max-width: 670px;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px -1px rgba(50, 50, 93, 0.25), 0 1px 3px -1px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+}
+
+.container {
+    background: linear-gradient(119.54deg, #000046, #1cb5e0);
+    height: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.description {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* Radio Button Group Styles */
+.radio-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.radio-group label {
+    font-size: 1rem;
+}
+
+/* Input Group Styles */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 95%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.flex-row input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.captcha {
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 5px 10px;
+}
+
+.captcha img {
+    height: 40px;
+}
+
+.refresh-captcha {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+/* Button Styles */
+button {
+    background-image: linear-gradient(to right, rgb(2, 13, 81), rgb(25, 176, 220));
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-image: linear-gradient(to right, rgb(2, 13, 81), rgb(20, 156, 200));
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .aadhar-container {
+        margin: 5rem 1rem;
+        padding: 16px;
+    }
+
+    .flex-row {
+        flex-direction: column;
+    }
+
+    .flex-row input {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
