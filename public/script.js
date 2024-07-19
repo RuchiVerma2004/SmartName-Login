@@ -1,82 +1,42 @@
-document.getElementById('aadhaar-login-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+const smartNameInput = document.getElementById('smartName');
+    const submitButton = document.getElementById('submit-button');
+    const errorMessage = document.getElementById('error-message');
+    const apiResponseContainer = document.getElementById('api-response');
 
-    const otp = document.getElementById('otp-input-group');
-    const aadharNumber = document.getElementById('aadhaarNumber');
-    // const mobileNumber = document.getElementById('mobileNumber');
+    submitButton.addEventListener('click', async (event) => {
+      event.preventDefault(); // Prevent default form submission
 
-    if (aadhaarNumber.value.length != 12) {
-        alert('Aadhaar numbers should be 12 digit in length');
-    }
-    else if (aadharNumber.value.match(/[^$,.\d]/)) {
-        alert('Aadhaar numbers must contain only numbers');
-    }
+      const smartName = smartNameInput.value.trim();
 
-    else if(validate_aadhar_number(aadharNumber.value)) {
-        if (otp.style.display == 'none') {
-            otp.style.display = 'block';
-            otp.required = true;
-        } 
-        
-        else {
-            window.location.href = 'smart-name.html';
+      if (!smartName) {
+        errorMessage.textContent = 'Please enter your Smart Name.';
+        errorMessage.style.display = 'block';
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://hnslogin.world/?name=${smartName}&type=TXT`); // Use template literal for safe string concatenation
+        const data = await response.json();
+        console.log(data);
+       
+        console.log(data.Answer[0].data);
+        console.log(data.Answer[1].data);
+        console.log(data.Answer[0].data.length);
+        console.log(data.Answer[1].data.length);
+
+        let aadharNumber = "";
+        if(data.Answer[0].data.length < 20){
+            aadharNumber = data.Answer[0].data;
+        }else {
+            aadharNumber= data.Answer[1].data;
         }
-    }
-    else {
-        alert("Invalid Aadhaar number");
-    }
 
-    // if (mobileNumber.value.length != 10) {
-    //     alert("Mobile Number should be 10 digits.");
-    // }
-    // if (mobileNumber.value.match(/[^$,.\d]/)) {
-    //     alert("Mobile number must contain numbers only");
-    // }
-});
-
-function generate(aadhaarArray) {
-    // The multiplication table
-    var d = [
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
-    [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
-    [3, 4, 0, 1, 2, 8, 9, 5, 6, 7],
-    [4, 0, 1, 2, 3, 9, 5, 6, 7, 8],
-    [5, 9, 8, 7, 6, 0, 4, 3, 2, 1],
-    [6, 5, 9, 8, 7, 1, 0, 4, 3, 2],
-    [7, 6, 5, 9, 8, 2, 1, 0, 4, 3],
-    [8, 7, 6, 5, 9, 3, 2, 1, 0, 4],
-    [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-    ];
-    // permutation table p
-    var p = [
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 5, 7, 6, 2, 8, 3, 0, 9, 4],
-    [5, 8, 0, 3, 7, 9, 6, 1, 4, 2],
-    [8, 9, 1, 6, 0, 4, 3, 5, 2, 7],
-    [9, 4, 5, 3, 1, 2, 6, 8, 7, 0],
-    [4, 2, 8, 6, 5, 7, 3, 9, 0, 1],
-    [2, 7, 9, 3, 8, 0, 6, 4, 1, 5],
-    [7, 0, 4, 6, 9, 1, 3, 2, 5, 8]
-    ];
-    // inverse table inv
-    var inv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9];
-
-    var c = 0;
-    var invertedArray = aadhaarArray.reverse();
-    for (var i = 0; i < invertedArray.length; i++) {
-        c = d[c][p[((i + 1) % 8)][invertedArray[i]]];
-    }
-
-    return inv[c];
-}
-
-function validate_aadhar_number(aadhaarNumber) {
-    var aadhaarArray = aadhaarNumber.split('');
-    var toCheckChecksum = aadhaarArray.pop();
-    if (generate(aadhaarArray) == toCheckChecksum) {
-        return true;
-    } else {
-        return false;
-    }
-};
+        apiResponseContainer.textContent = "Aadhar Number: " + aadharNumber ; // Display data in preformatted element
+        apiResponseContainer.style.display = 'block';
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        errorMessage.textContent = 'An error occurred. Please try again later.';
+        errorMessage.style.display = 'block';
+      }
+    });
