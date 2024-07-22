@@ -19,24 +19,27 @@ const smartNameInput = document.getElementById('smartName');
         const data = await response.json();
         console.log(data);
        
-        console.log(data.Answer[0].data);
-        console.log(data.Answer[1].data);
-        console.log(data.Answer[0].data.length);
-        console.log(data.Answer[1].data.length);
+        // console.log(data.Answer[0].data);
+        // console.log(data.Answer[1].data);
+        // console.log(data.Answer[0].data.length);
+        // console.log(data.Answer[1].data.length);
 
         let aadharNumber = "";
         if(data.Answer[0].data.length < 20){
-            aadharNumber = data.Answer[0].data;
-        }else {
-            aadharNumber= data.Answer[1].data;
+            aadharNumber ="Aadhar Number: " + data.Answer[0].data;
+        }else if(data.Answer[1].data.length < 20){
+            aadharNumber= "Aadhar Number: " + data.Answer[1].data;
+
+        }else{
+          aadharNumber = "Your Aadhar Number is not linked to your Smart Name."
         }
 
-        apiResponseContainer.textContent = "Aadhar Number: " + aadharNumber ; // Display data in preformatted element
+        apiResponseContainer.textContent = aadharNumber ; // Display data in preformatted element
         apiResponseContainer.style.display = 'block';
         
       } catch (error) {
         console.error('Error fetching data:', error);
-        errorMessage.textContent = 'An error occurred. Please try again later.';
+        errorMessage.textContent = 'This Smart Name does not exist.';
         errorMessage.style.display = 'block';
       }
     });
