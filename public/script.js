@@ -20,13 +20,12 @@ submitButton.addEventListener('click', async (event) => {
     try {
         const response = await fetch(`https://hnslogin.world/?name=${smartName}&type=TXT`); // Use template literal for safe string concatenation
         const data = await response.json();
-        console.log(data);
-
+        
         let aadharNumber = "";
-        if (data.Answer[0].data.length === 12) {
+        if (data.Answer[0].data.length == 14) {
             aadharNumber = data.Answer[0].data;
           
-        } else if (data.Answer[1].data.length === 12) {
+        } else if (data.Answer[1].data.length == 14) {
             aadharNumber = data.Answer[1].data;
         } else {
             aadharNumber = null;
@@ -75,16 +74,11 @@ submitButton.addEventListener('click', async (event) => {
 
 submitOtp.addEventListener('click', async (event) => {
     event.preventDefault(); 
-    console.log("button clicked");
-
-    const otpEntered = otp.value.trim();
-    console.log(otpEntered.length);
-    
+    const otpEntered = otp.value.trim(); 
     
     if (!otpEntered) {
         errorMessage.textContent = 'Please enter OTP Sent to your Mobile Number';
         errorMessage.style.display = 'block';
-        console.log("error-otp not typed");
         return;
     }
 
@@ -144,7 +138,7 @@ function generate(aadhaarArray) {
 }
 
 function validate_aadhar_number(aadhaarNumber) {
-    var aadhaarArray = aadhaarNumber.split('');
+    const aadhaarArray = aadhaarNumber.slice(1, -1).split('');
     var toCheckChecksum = aadhaarArray.pop();
     if (generate(aadhaarArray) == toCheckChecksum) {
         return true;
