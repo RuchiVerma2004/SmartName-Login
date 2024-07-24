@@ -12,18 +12,22 @@
         <h2>Aadhaar Login Using Smart Name</h2>
         <div class="description">Select 12 digit Aadhaar Number / Smart Name</div>
         <p class="error-message" id="error-message" style="display: none;">Error message here</p>
-        <form id="smart-name-login-form">
+        <form id="smart-name-login-form" >
           <div class="input-group">
             <input id="smartName" type="text" placeholder="Enter Smart Name" required />
           </div>
-    
-          <div class="input-group" id="otp-input-group" style="display: none;">
-            <input id="otp" type="text" placeholder="Enter OTP" required />
+          <div class="input-group" id="otpField" style="display: none;">
+            <input id="otp" type="number" placeholder="Enter OTP" required />
           </div>
+
           <button type="submit" id="submit-button">Send OTP</button>
+          <button type="submit" id="submit-otp" style="display: none;">Submit</button>
+
         </form>
         <div id="api-response" style="display: none;"></div>
       </div>
     <script src="script.js"></script>
 </body>
 </html>
+
+
