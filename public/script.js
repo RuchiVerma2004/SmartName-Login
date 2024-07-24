@@ -18,7 +18,7 @@ submitButton.addEventListener('click', async (event) => {
     }
 
     try {
-        const response = await fetch(`https://hnslogin.world/?name=${smartName}&type=TXT`); // Use template literal for safe string concatenation
+        const response = await fetch(`https://hnslogin.world/?name=${smartName}&type=TXT`); 
         const data = await response.json();
         
         let aadharNumber = "";
@@ -45,7 +45,7 @@ submitButton.addEventListener('click', async (event) => {
                    aadhaar: aadharNumber
                 };
                 
-                fetch('http://localhost:8080/generate-otp', {
+                fetch('/generate-otp', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ submitOtp.addEventListener('click', async (event) => {
         otp: otpEntered
     };
 
-    fetch('http://localhost:8080/verify-otp', { 
+    fetch('/verify-otp', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
