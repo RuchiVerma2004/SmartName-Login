@@ -71,12 +71,12 @@ button {
     border: none;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease, box-shadow 0.3s ease; /* Combine background and box-shadow transitions */
+    transition: background 0.3s ease, box-shadow 0.3s ease; 
   }
   
-  button:active {  /* Use :active for pressing effect */
-    background-image: linear-gradient(to right, rgb(12, 23, 121), rgb(15, 136, 160)); /* Darken gradient on press */
-    box-shadow: inset 2px 4px 6px rgba(0, 0, 0, 0.4); /* Simulate indentation with inset box-shadow */
+  button:active {  
+    background-image: linear-gradient(to right, rgb(12, 23, 121), rgb(15, 136, 160)); 
+    box-shadow: inset 2px 4px 6px rgba(0, 0, 0, 0.4);
   }
   
   button:hover {
