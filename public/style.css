@@ -59,9 +59,6 @@
     margin-right: 10px;
 }
 
-
-
-/* Button Styles */
 button {
     background-image: linear-gradient(to right, rgb(2, 13, 81), rgb(25, 176, 220));
     color: white;
@@ -80,7 +77,7 @@ button {
   }
   
   button:hover {
-    background-image: linear-gradient(to right, rgb(2, 13, 81), rgb(20, 156, 200)); /* Maintain hover effect */
+    background-image: linear-gradient(to right, rgb(2, 13, 81), rgb(20, 156, 200)); 
   }
 
 
