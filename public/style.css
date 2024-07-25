@@ -27,15 +27,8 @@
     color: #333;
 }
 
-/* Radio Button Group Styles */
-.radio-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.radio-group label {
-    font-size: 1rem;
+.error-message{
+    color:rgb(183, 6, 6);
 }
 
 /* Input Group Styles */
@@ -66,24 +59,7 @@
     margin-right: 10px;
 }
 
-.captcha {
-    display: flex;
-    align-items: center;
-    border: none;
-    padding: 5px 10px;
-}
 
-.captcha img {
-    height: 40px;
-}
-
-.refresh-captcha {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
-    font-size: 1.2rem;
-}
 
 /* Button Styles */
 button {
@@ -95,32 +71,21 @@ button {
     border: none;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease;
-}
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Combine background and box-shadow transitions */
+  }
+  
+  button:active {  /* Use :active for pressing effect */
+    background-image: linear-gradient(to right, rgb(12, 23, 121), rgb(15, 136, 160)); /* Darken gradient on press */
+    box-shadow: inset 2px 4px 6px rgba(0, 0, 0, 0.4); /* Simulate indentation with inset box-shadow */
+  }
+  
+  button:hover {
+    background-image: linear-gradient(to right, rgb(2, 13, 81), rgb(20, 156, 200)); /* Maintain hover effect */
+  }
 
-button:hover {
-    background-image: linear-gradient(to right, rgb(2, 13, 81), rgb(20, 156, 200));
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .aadhar-container {
-        margin: 5rem 1rem;
-        padding: 16px;
-    }
-
-    .flex-row {
-        flex-direction: column;
-    }
-
-    .flex-row input {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-}
 
 
 #api-response{
     margin-top: 1rem;
+    color: #0a8e0a;
 }
