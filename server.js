@@ -66,71 +66,77 @@ app.get('/script.js', (req, res) => {
 });
 
 
-const apiKey = 'key_live_kELcERNjhxcZqmwFDMz19KQ7a1C9KOT4';
-const accessToken = 'eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJBUEkiLCJyZWZyZXNoX3Rva2VuIjoiZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKaGRXUWlPaUpCVUVraUxDSnpkV0lpT2lKd2RYTm9jR1Z1WkdWeU1qY3lNekl3UUdkdFlXbHNMbU52YlNJc0ltRndhVjlyWlhraU9pSnJaWGxmYkdsMlpWOXJSVXhqUlZKT2FtaDRZMXB4YlhkR1JFMTZNVGxMVVRkaE1VTTVTMDlVTkNJc0ltbHpjeUk2SW1Gd2FTNXpZVzVrWW05NExtTnZMbWx1SWl3aVpYaHdJam94TnpVeE9UVTJPRFF6TENKcGJuUmxiblFpT2lKU1JVWlNSVk5JWDFSUFMwVk9JaXdpYVdGMElqb3hOekl3TkRJd09EUXpmUS5IUzNTbng3NkduUlV0X0diVkFXUjhGWGkwSFlZSlZMRVhtcDZGSWtfNUl3RE1PM1ZLcWpHV296enB5bUMtN3hDZFRWVm93QUppS2lMaTJrZXY4SGNrZyIsInN1YiI6InB1c2hwZW5kZXIyNzIzMjBAZ21haWwuY29tIiwiYXBpX2tleSI6ImtleV9saXZlX2tFTGNFUk5qaHhjWnFtd0ZETXoxOUtRN2ExQzlLT1Q0IiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJleHAiOjE3MjA1MDcyNDMsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImlhdCI6MTcyMDQyMDg0M30.EDcsjr4_vMklrNLNSNZBw1fu2dQwBGeiNyw5Huk3DK7aIrGJdzm9uOvn3r7SsAaRhPOInXqXXBq_XGhyCxAGdw';
+const apiKey = 'key_live_MTH2GDBR4ix66rudnakP2xhVIgJuPf8M';
+const accessToken = 'eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJBUEkiLCJyZWZyZXNoX3Rva2VuIjoiZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKaGRXUWlPaUpCVUVraUxDSnpkV0lpT2lKdWFYTm9ZVzUwYTJoaGRISnBNRGsxUUdkdFlXbHNMbU52YlNJc0ltRndhVjlyWlhraU9pSnJaWGxmYkdsMlpWOU5WRWd5UjBSQ1VqUnBlRFkyY25Wa2JtRnJVREo0YUZaSlowcDFVR1k0VFNJc0ltbHpjeUk2SW1Gd2FTNXpZVzVrWW05NExtTnZMbWx1SWl3aVpYaHdJam94TnpVek9UUTBPVE15TENKcGJuUmxiblFpT2lKU1JVWlNSVk5JWDFSUFMwVk9JaXdpYVdGMElqb3hOekl5TkRBNE9UTXlmUS5DVHNXeE1zYXZueFJlLURIWFFZZVYyTng3VU9XdGQ3NldpV181NC01RmpES1VTNGVWMXFlVC16YVRCXzZlVXJ0eXpmeHUtMGtzaTl1eXlhdndMdW15dyIsInN1YiI6Im5pc2hhbnRraGF0cmkwOTVAZ21haWwuY29tIiwiYXBpX2tleSI6ImtleV9saXZlX01USDJHREJSNGl4NjZydWRuYWtQMnhoVklnSnVQZjhNIiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJleHAiOjE3MjI0OTUzMzIsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImlhdCI6MTcyMjQwODkzMn0.6D6ylEJLxUqXrxN9WkZ1nSFIlv2X29rboXkemH_ylRfVwm8VDSCZukanahklCV5TxtVZ_6zQunjfnr_G3qq_Sw';
 console.log("server");
 
 app.post('/generate-otp', async (req, res) => {
-  const { aadhaar } = req.body;
-  console.log("Received Aadhaar number:", aadhaar);
+  let { aadhaar } = req.body;
+ aadhaar = aadhaar.slice(1, -1);
+ console.log(aadhaar);
+//   console.log("Received Aadhaar number:", aadhaar);
 
-  // try {
-  //     const response = await axios.post('https://api.sandbox.co.in/kyc/aadhaar/okyc/otp', {
-  //         '@entity': 'in.co.sandbox.kyc.aadhaar.okyc.otp.request',
-  //         aadhaar_number: aadhaar,
-  //         consent: 'y',
-  //         reason: 'For KYC'
-  //     }, {
-  //         headers: {
-  //             'accept': 'application/json',
-  //             'Authorization': accessToken,
-  //             'x-api-key': apiKey,
-  //             'x-api-version': '2.0',
-  //             'content-Type': 'application/json'
-  //         }
-  //     });
-
-  //     res.status(200).json({ message: response.data, reference_id: response.data.data.reference_id });
-  // } catch (error) {
-  //     res.status(500).json({ message: 'Failed to send OTP', error: error.response ? error.response.data : error.message });
-  // }
+  try {
+      const response = await axios.post('https://api.sandbox.co.in/kyc/aadhaar/okyc/otp', {
+          '@entity': 'in.co.sandbox.kyc.aadhaar.okyc.otp.request',
+          aadhaar_number: aadhaar,
+          consent: 'y',
+          reason: 'For KYC'
+      }, {
+          headers: {
+              'accept': 'application/json',
+              'Authorization': accessToken,
+              'x-api-key': apiKey,
+              'x-api-version': '2.0',
+              'content-Type': 'application/json'
+          }
+      });
+      console.log({ message: response.data, reference_id: response.data.data.reference_id });
+      res.status(200).json({ message: response.data, reference_id: response.data.data.reference_id });
+  } catch (error) {
+    console.log({ message: 'Failed to send OTP', error: error.response ? error.response.data : error.message });
+      res.status(500).json({ message: 'Failed to send OTP', error: error.response ? error.response.data : error.message });
+  }
 });
 
 // OTP Verification Endpoint
 app.post('/verify-otp', async (req, res) => {
-    // const { otp, reference_id } = req.body;
-    const { otp } = req.body;
+    const { otp, reference_id } = req.body;
+    // const { otp } = req.body;
 
 
     // console.log(`Verifying OTP for reference_id: ${reference_id} and otp: ${otp}`);
     console.log(`Verified OTP : ${otp}`);
 
 
-    // try {
-    //     const response = await axios.post('https://api.sandbox.co.in/kyc/aadhaar/okyc/otp/verify', {
-    //         '@entity': 'in.co.sandbox.kyc.aadhaar.okyc.request',
-    //         reference_id: reference_id,
-    //         otp: otp
-    //     }, {
-    //         headers: {
-    //             'accept': 'application/json',
-    //             'Authorization': accessToken,
-    //             'x-api-key': apiKey,
-    //             'x-api-version': '2.0',
-    //             'content-Type': 'application/json'
-    //         }
-    //     });
+    try {
+        const response = await axios.post('https://api.sandbox.co.in/kyc/aadhaar/okyc/otp/verify', {
+            '@entity': 'in.co.sandbox.kyc.aadhaar.okyc.request',
+            reference_id: reference_id,
+            otp: otp
+        }, {
+            headers: {
+                'accept': 'application/json',
+                'Authorization': accessToken,
+                'x-api-key': apiKey,
+                'x-api-version': '2.0',
+                'content-Type': 'application/json'
+            }
+        });
 
-    //     console.log(response.data);
+        console.log(response.data);
 
-    //     if (response.data.status === 'Success') {
-    //         res.status(200).json({ message: 'OTP verified successfully', data: response.data });
-    //     } else {
-    //         res.status(400).json({ message: 'OTP verification failed', data: response.data });
-    //     }
-    // } catch (error) {
-    //     res.status(500).json({ message: 'Failed to verify OTP', error: error.response ? error.response.data : error.message });
-    // }
+        if (response.data.status === 'Success') {
+            console.log({ message: 'OTP verified successfully', data: response.data });
+            res.status(200).json({ message: 'OTP verified successfully', data: response.data });
+        } else {
+            res.status(400).json({ message: 'OTP verification failed', data: response.data });
+            console.log({ message: 'OTP verification failed', data: response.data });
+        }
+    } catch (error) {
+        console.log({ message: 'Failed to verify OTP', error: error.response ? error.response.data : error.message });
+        res.status(500).json({ message: 'Failed to verify OTP', error: error.response ? error.response.data : error.message });
+    }
 });
 
 

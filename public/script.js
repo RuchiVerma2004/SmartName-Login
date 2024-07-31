@@ -39,7 +39,6 @@ submitButton.addEventListener('click', async (event) => {
                otpInput.parentElement.style.display = 'block'; 
                submitOtp.style.display = 'block';
                submitButton.style.display = "none";
-
                
                const dataToSend = {
                    aadhaar: aadharNumber
@@ -52,7 +51,7 @@ submitButton.addEventListener('click', async (event) => {
                     },
                     body: JSON.stringify(dataToSend)
                 })
-                .then(response => response.json())
+                .then(response => console.log(response.json())
                 .then(data => console.log('Success:', data))
                 .catch((error) => console.error('Error:', error));
             }
