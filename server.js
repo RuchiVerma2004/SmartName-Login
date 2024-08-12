@@ -146,7 +146,7 @@ app.post('/verify-otp', async (req, res) => {
             // console.log({ message: 'OTP verified successfully', data: response.data });
             res.status(200).json({ message: 'OTP verified successfully', data: response.data });
         } else {
-            res.status(400).json({ message: 'OTP verification failed', data: response.data });
+            res.status(400).json({ message: 'OTP veried', data: response.data });
             console.log({ message: 'OTP verification failed', data: response.data });
         }
     } catch (error) {
