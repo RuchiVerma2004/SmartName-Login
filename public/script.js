@@ -60,8 +60,8 @@ submitButton.addEventListener('click', async (event) => {
                     }
                 
                     const data = await response.json();
-                    console.log("message:", data.message); 
-                    console.log("reference_id:", data.reference_id); 
+                    // console.log("message:", data.message); 
+                    // console.log("reference_id:", data.reference_id); 
                     reference_id=data.reference_id;
                   } catch (error) {
                     console.error('Error:', error);
