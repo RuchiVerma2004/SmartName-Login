@@ -36,7 +36,7 @@ submitButton.addEventListener('click', async (event) => {
         if (aadharNumber) {
            if(validate_aadhar_number(aadharNumber)){
 
-               apiResponseContainer.textContent = "Aadhar Number: " + aadharNumber;
+            //    apiResponseContainer.textContent = "Aadhar Number: " + aadharNumber;
                apiResponseContainer.style.display = 'block';
                otpInput.parentElement.style.display = 'block'; 
                submitOtp.style.display = 'block';
