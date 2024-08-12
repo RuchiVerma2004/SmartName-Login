@@ -4,7 +4,9 @@ const submitOtp = document.getElementById('submit-otp');
 const errorMessage = document.getElementById('error-message');
 const apiResponseContainer = document.getElementById('api-response');
 const otpInput = document.getElementById('otp');
-
+const userDetailsDiv = document.getElementById('user-details');
+const userImage = document.getElementById('user-image')
+let reference_id = "";
 submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
@@ -44,16 +46,27 @@ submitButton.addEventListener('click', async (event) => {
                    aadhaar: aadharNumber
                 };
                 
-                fetch('/generate-otp', {
-                    method: 'POST',
-                    headers: {
+                try {
+                    const response = await fetch('/generate-otp', {
+                      method: 'POST',
+                      headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(dataToSend)
-                })
-                .then(response => console.log(response.json())
-                .then(data => console.log('Success:', data))
-                .catch((error) => console.error('Error:', error));
+                      },
+                      body: JSON.stringify(dataToSend) 
+                    });
+                
+                    if (!response.ok) {
+                      throw new Error(`Error generating OTP: ${response.status}`);
+                    }
+                
+                    const data = await response.json();
+                    console.log("message:", data.message); 
+                    console.log("reference_id:", data.reference_id); 
+                    reference_id=data.reference_id;
+                  } catch (error) {
+                    console.error('Error:', error);
+                  
+                  }
             }
             else{
                 apiResponseContainer.textContent = 'Aadhar Number linked to this Smart name does not exist.';
@@ -82,7 +95,8 @@ submitOtp.addEventListener('click', async (event) => {
     }
 
     const dataToSend = {
-        otp: otpEntered
+        otp: otpEntered,
+        reference_id: reference_id
     };
 
     fetch('/verify-otp', { 
@@ -93,7 +107,44 @@ submitOtp.addEventListener('click', async (event) => {
         body: JSON.stringify(dataToSend)
     })
     .then(response => response.json())
-    .then(data => console.log('Success:', data))
+    .then(data => {
+        console.log('Success:', data.data.code);
+        if(data.data.code === 200){
+            submitOtp.style.display = 'none';
+            submitButton.style.display = 'none';
+            apiResponseContainer.style.display = 'block';
+            apiResponseContainer.textContent = 'OTP Verified!';
+            errorMessage.style.display = 'none';
+
+            const name = data.data.data.name;
+            const gender = data.data.data.gender;
+            const dob = data.data.data.date_of_birth;
+            const add = data.data.data.full_address;
+            var photoAddress = data.data.data.photo;
+            
+            // Create an image element
+            const img = document.createElement('img');
+            // Set the src attribute to the base64 string
+            img.src = 'data:image/jpeg;base64,' + photoAddress;
+            userImage.style.display = 'block';
+
+            document.getElementById('user-image').appendChild(img);
+
+            const userDetailsHtml = `
+            <h3>User Details</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Gender:</strong> ${gender}</p>
+            <p><strong>Date of Birth:</strong> ${dob}</p>
+            <p><strong>Address:</strong> ${add}</p>
+        `;
+        console.log(userDetailsHtml);
+        userDetailsDiv.innerHTML = userDetailsHtml;
+        userDetailsDiv.style.display = 'block';
+        } else{
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = data.data.data.message;
+        }
+    })
     .catch((error) => console.error('Error:', error));
 
    
