@@ -136,7 +136,9 @@ submitOtp.addEventListener('click', async (event) => {
             <p><strong>Gender:</strong> ${gender}</p>
             <p><strong>Date of Birth:</strong> ${dob}</p>
             <p><strong>Address:</strong> ${add}</p>
+
         `;
+           apiResponseContainer.textContent = "Aadhar Number: " + aadharNumber;
         console.log(userDetailsHtml);
         userDetailsDiv.innerHTML = userDetailsHtml;
         userDetailsDiv.style.display = 'block';
