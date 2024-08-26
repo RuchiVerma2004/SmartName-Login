@@ -86,3 +86,12 @@ button {
     margin-top: 1rem;
     color: #0a8e0a;
 }
+
+.flex{
+    display: flex;
+    flex-direction: row;
+}
+
+#user-details{
+    margin-left: 36px;
+}

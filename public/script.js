@@ -60,7 +60,7 @@ submitButton.addEventListener('click', async (event) => {
                     }
                 
                     const data = await response.json();
-                    // console.log("message:", data.message); 
+                    console.log("message:", data.message); 
                     // console.log("reference_id:", data.reference_id); 
                     reference_id=data.reference_id;
                   } catch (error) {
@@ -109,6 +109,7 @@ submitOtp.addEventListener('click', async (event) => {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data.data.code);
+        console.log(data);
         if(data.data.code === 200){
             submitOtp.style.display = 'none';
             submitButton.style.display = 'none';
@@ -121,6 +122,7 @@ submitOtp.addEventListener('click', async (event) => {
             const dob = data.data.data.date_of_birth;
             const add = data.data.data.full_address;
             var photoAddress = data.data.data.photo;
+            console.log(name);
             
             // Create an image element
             const img = document.createElement('img');
@@ -131,14 +133,14 @@ submitOtp.addEventListener('click', async (event) => {
             document.getElementById('user-image').appendChild(img);
 
             const userDetailsHtml = `
-            <h3>User Details</h3>
+           
             <p><strong>Name:</strong> ${name}</p>
+            <p><strong>DOB:</strong> ${dob}</p>
             <p><strong>Gender:</strong> ${gender}</p>
-            <p><strong>Date of Birth:</strong> ${dob}</p>
             <p><strong>Address:</strong> ${add}</p>
 
         `;
-           apiResponseContainer.textContent = "Aadhar Number: " + aadharNumber;
+       
         console.log(userDetailsHtml);
         userDetailsDiv.innerHTML = userDetailsHtml;
         userDetailsDiv.style.display = 'block';

@@ -73,8 +73,8 @@ app.get('/script.js', (req, res) => {
     });
 });
 
-
-const apiKey = 'eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJBUEkiLCJyZWZyZXNoX3Rva2VuIjoiZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKaGRXUWlPaUpCVUVraUxDSnpkV0lpT2lKcmFHRjBjbWx1YVhOb1lXNTBNek16UUdkdFlXbHNMbU52YlNJc0ltRndhVjlyWlhraU9pSnJaWGxmYkdsMlpWOUJTVlpJTm0xMVRqUlpRM2REUlhBM01sZG5NRXRqWWt0c1dsaENSak5VVVNJc0ltbHpjeUk2SW1Gd2FTNXpZVzVrWW05NExtTnZMbWx1SWl3aVpYaHdJam94TnpVMU5URXpPREkwTENKcGJuUmxiblFpT2lKU1JVWlNSVk5JWDFSUFMwVk9JaXdpYVdGMElqb3hOekl6T1RjM09ESTBmUS51MTRTMHF6WGV0dmRKVFhwcFpHenI2WE1ZdjBkYjZ6WVJFMWZxLXpCTkJlVVlxRkR5ZlBneWNCTk4zc3NOM1lONkpuRHNDcU5vOV9LeXNFdDNrNXl3dyIsInN1YiI6ImtoYXRyaW5pc2hhbnQzMzNAZ21haWwuY29tIiwiYXBpX2tleSI6ImtleV9saXZlX0FJVkg2bXVONFlDd0NFcDcyV2cwS2NiS2xaWEJGM1RRIiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJleHAiOjE3MjQwNjQyMjQsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImlhdCI6MTcyMzk3NzgyNH0.WW5MByw5XRSub03s5iAsogiLEPW07OYO5sEl2ef-WCaKU_nxeXdC3qF8qyhHjZQNw6EextcVOdUDTOFZFDkL0Q';
+const apiKey = 'key_live_2pMRK3JRbcYcGQ99NjDE1WDUZvvwygdY';
+const accessToken = 'eyJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJBUEkiLCJyZWZyZXNoX3Rva2VuIjoiZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKaGRXUWlPaUpCVUVraUxDSnpkV0lpT2lKdWFYTm9ZVzUwYTJoaGRISnBPVGd4TWpNMk1UQTJNVUJuYldGcGJDNWpiMjBpTENKaGNHbGZhMlY1SWpvaWEyVjVYMnhwZG1WZk1uQk5Va3N6U2xKaVkxbGpSMUU1T1U1cVJFVXhWMFJWV25aMmQzbG5aRmtpTENKcGMzTWlPaUpoY0drdWMyRnVaR0p2ZUM1amJ5NXBiaUlzSW1WNGNDSTZNVGMxTmpFNU9EQXdNQ3dpYVc1MFpXNTBJam9pVWtWR1VrVlRTRjlVVDB0RlRpSXNJbWxoZENJNk1UY3lORFkyTWpBd01IMC50QmtpWVl2M3BsWkFWQUMtY1ZHdW1SeFZZaWRaUG5SSERRdk00SnZLdmtrWGY5VUNqN2c3NjdmaW1vX2doYnc4bTYycDREb2xnUjc4c3ZJdnNOeGxhdyIsInN1YiI6Im5pc2hhbnRraGF0cmk5ODEyMzYxMDYxQGdtYWlsLmNvbSIsImFwaV9rZXkiOiJrZXlfbGl2ZV8ycE1SSzNKUmJjWWNHUTk5TmpERTFXRFVadnZ3eWdkWSIsImlzcyI6ImFwaS5zYW5kYm94LmNvLmluIiwiZXhwIjoxNzI0NzQ4NDAwLCJpbnRlbnQiOiJBQ0NFU1NfVE9LRU4iLCJpYXQiOjE3MjQ2NjIwMDB9.S5itJLJW_CV2MvIc5vPEqUVMR3vHU3BgT-V0JznKIi_nvYq8x4tjpF9zLyWc8BqBOCoHgUbIEsqVI67hojzKjg';
 console.log("server");
 
 app.post('/generate-otp', async (req, res) => {
@@ -136,9 +136,8 @@ app.post('/verify-otp', async (req, res) => {
             }
         });
 
-        // console.log(response.data);
 
-        if (response.data.status === 'Success') {
+        if (response.data.data.status === 'VALID') {
             // console.log({ message: 'OTP verified successfully', data: response.data });
             res.status(200).json({ message: 'OTP verified successfully', data: response.data });
         } else {
